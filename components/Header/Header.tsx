@@ -2,7 +2,12 @@ import styles from './header.module.scss'
 import { Container, Row, Col } from 'react-bootstrap'
 import Toggle from '../Toggle'
 
-const Header = () => {
+interface IHeader {
+    setDarkMode: (val: boolean) => void;
+}
+
+
+const Header: React.FC<IHeader> = ({setDarkMode}) => {
     return (
         <header className={styles.header}>
             <Container>
@@ -14,7 +19,7 @@ const Header = () => {
                     <Col className="text-right">
                         <p className="mt-4 mb-0">Home | About | Speak For Us | Sponsors | Shop</p>
                         <p className="mt-1">Welcome, Vijay</p>
-                        <Toggle status={true} className="mb-2" />
+                        <Toggle status={true} className="mb-2" setDarkMode={setDarkMode} />
                     </Col>
                 </Row>
             </Container>

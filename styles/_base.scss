@@ -1,11 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;1,300;1,400&family=Oxygen:wght@300;400;700&display=swap');
 @import '~bootstrap/scss/bootstrap.scss';
 
-body {
+
+.light {
+    --theme-color: #FFE249;
+    --theme-page-text: #4E4E4E;
+    --theme-toggle: #4E4E4E;
+    --theme-switch: #E5E5E5;
+    --theme-body: #FFF;
+}
+
+.dark {
+    --theme-color: #4E4E4E;
+    --theme-page-text: #fff;
+    --theme-toggle: #E5E5E5;
+    --theme-switch: #fff;
+    --theme-body: #4E4E4E;
+}
+
+.main {
     font-family: 'Merriweather', Georgia, 'Times New Roman', Times, serif;
     font-weight: 300;
     font-size: 16px;
-    color: #4E4E4E;
+    background: var(--theme-body);
+    color: var(--theme-page-text);
 }
 
 
@@ -77,3 +95,4 @@ blockquote {
 /** 
 Buttons 
 **/
+

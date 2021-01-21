@@ -1,17 +1,28 @@
+import React, {useState} from 'react'
 import Head from 'next/head'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import {Container, Card, Row, Col, Button, Alert} from 'react-bootstrap'
+import { Container, Card, Row, Col, Button, Alert } from 'react-bootstrap'
 // link up to Wordpress next
 
+const categories = ['Data Structures / Algorithms', 'Crypto & Bitcoin', 'Python / Data Science', 'React / Vue / Angular', 'JavaScript / Node.js','iOS / Swift']
+
+const sponsors = ['1', '2', '3', '4']
+
+export const DarkContext = React.createContext(false)
+
 export default function Home() {
+  const [darkMode, setDarkMode] = useState(false)
+
   return (
-      <>
+      <div className={`main ${darkMode ? 'dark' : 'light'}`}>
       <Head>
         <title>HackBuddy Future Site</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
+      <DarkContext.Provider value={darkMode}>
+        <Header setDarkMode={setDarkMode} />
+      </DarkContext.Provider>
       <div>
         <Container className="home">
           <Row>
@@ -64,15 +75,11 @@ export default function Home() {
             <Col className="text-center">
               <h2 className="text-center">Popular Categories & Trends</h2>
               <Row>
-                <Col>
-                  <Button variant="success">Data Structures / Algorithms</Button>
-                </Col>
-                <Col>
-                  <Button variant="dark">Crypto & Bitcoin</Button>
-                </Col>
-                <Col>
-                  <Button variant="secondary">Python / Data Science</Button>
-                </Col>
+                {categories.map((category, id)=>(
+                  <Col key={id} md="4" className="mb-4">
+                    <Button>{category}</Button>
+                  </Col>
+                ))}
               </Row>
             </Col>
           </Row>
@@ -84,7 +91,9 @@ export default function Home() {
           <Row>
             <Col>
               <h2 className="text-center">Sponsors</h2>
-              <div className="sponsor"></div>
+              {sponsors.map((sponsor, id)=>(
+                <div className="sponsor"></div>
+              ))}
               <div className="ad">This is an ad</div>
               <div>
                 <span className="tag">This is a tag</span>
@@ -96,7 +105,7 @@ export default function Home() {
         <Alert variant={`primary`}>On Sale Now! Full Stack React Course Just $9.99 (Click Here)</Alert>
       </div>
       <Footer />
-    </>
+    </div>
     
   )
 }

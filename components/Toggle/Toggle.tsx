@@ -1,5 +1,6 @@
 import styles from './Toggle.module.scss'
-import {useState} from 'react'
+import { useContext} from 'react'
+import {DarkContext} from '../../pages/index'
 
 interface IToggle {
   status: Boolean;
@@ -8,12 +9,17 @@ interface IToggle {
 
 //use context provider or redux for this site (since it will toggle dark mode)
 
-const Toggle : React.FC<IToggle> = ({status, ...props}) => {
-    const [toggle, setToggle] = useState(status ?? false)
+const Toggle = ({status, setDarkMode, ...props}) => {
+   const darkMode = useContext(DarkContext)
+
     return (
       <div {...props}>
-        <span className={styles.toggle} onClick={()=>setToggle(!toggle)}>
-          <span className={`${styles.switch} ${toggle ? styles.on : ''}`}></span>
+        <span className={styles.toggle} onClick={e => {
+          setDarkMode(!darkMode)
+          console.log(darkMode)
+
+        }}>
+          <span className={`${styles.switch} ${darkMode ? styles.on : ''}`}></span>
         </span>
       </div>
     )

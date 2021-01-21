@@ -16,6 +16,11 @@
     width: 216px;
     height: 216px;
     border-radius: 50%;
+    display: inline-block;
+    margin-right: 2rem;
+    &:last-child {
+        margin-right: 0;
+    }
 }
 
 .placeholder {
