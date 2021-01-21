@@ -1,0 +1,23 @@
+.toggle {
+    display: inline-block;
+    width: 64px;
+    height: 34px;
+    background-color: #4E4E4E;
+    border-radius: 50px;
+    position: relative;
+    cursor: pointer;
+    .switch {
+        display: inline-block;
+        height: 32px;
+        width:32px;
+        background-color: #E5E5E5;
+        border-radius: 100%;
+        box-shadow: 0px 1px 2px 2px #4E4E4E;
+        position: absolute;
+        left: 0;
+        transition: left .5s;
+        &.on {
+            left: calc(100% - 32px);
+        }
+    }
+}

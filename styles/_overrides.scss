@@ -1,0 +1,77 @@
+.card { border-radius: 4px;}
+
+.btn {
+    border: 0px;
+    &-primary {
+        background-color: #01CDFE;
+        color: #fff;
+        &:active, &:hover {
+            background-color: #05B5DF;
+        }
+    }
+    &-secondary {
+        background-color: #FF71CE;
+        color: #fff;
+        &:active, &:hover {
+            background-color: #D25DAA;
+        }
+    }
+    &-success {
+        background-color: #05FFA1;
+        color: #4E4E4E;
+        &:active, &:hover {
+            background-color: #1AB77C;
+        }
+    }
+    &-danger {
+        background-color: #F6000F;
+        color: #fff;
+        &:active, &:hover {
+            background-color: #BC0913;
+        }
+    }
+    &-warning {
+        background-color: #FFFB96;
+        color: #4E4E4E;
+        &:active, &:hover {
+            background-color: #EEEA92;
+        }
+    }
+    &-info {
+        background-color: #A3E9FF;
+        color: #fff;
+        &:active, &:hover {
+            background-color: #92CDE0;
+            color: #4E4E4E;
+        }
+    }
+    &-light {
+        border: 1px solid #4E4E4E;
+        box-sizing:border-box;
+        background-color: transparent;
+        color: #4E4E4E;
+        height:36px;
+        &:active, &:hover {
+            background-color: #4E4E4E;
+            color: #fff;
+            border: 1px solid #fff;
+        }
+    }
+    &-dark {
+        background-color: #4E4E4E;
+        border: 1px solid #4E4E4E; 
+        box-sizing:border-box;
+        color: #fff;
+        height:36px;
+        &:active, &:hover {
+            border: 1px solid #4E4E4E;
+            background-color: #fff;
+            color: #4E4E4E;
+        }
+    }
+}
+
+.alert {
+    text-align: center;
+    margin-bottom: 0;
+}
