@@ -13,7 +13,7 @@ const Header: React.FC<IHeader> = ({setDarkMode}) => {
             <Container>
                 <Row>
                     <Col>
-                        <p className="mt-3 mb-0 logo">HackBuddy</p>
+                        <p className="mt-3 mb-0 logo"><a href="/">HackBuddy</a></p>
                         <p className="mt-1 font-italic">Become a Better Software Engineer</p>
                     </Col>
                     <Col className="text-right">
