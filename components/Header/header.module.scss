@@ -2,4 +2,19 @@
     background-color: var(--theme-color);
     color:  var(--theme-page-text);
     width: 100%;
+
+    ul {
+        li {
+            display: inline;
+            a { color: var(--theme-page-text); }
+            &:after {
+                content: " | ";
+            }
+            &:last-child {
+                &:after {
+                    content: "";
+                }
+            }
+        }
+    }
 }
