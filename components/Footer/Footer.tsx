@@ -1,10 +1,9 @@
-import styles from './Footer.module.scss';
 import { Container, Row, Col, Alert } from 'react-bootstrap';
 
 const Footer = () => {
   return (
     <>
-      <footer className={styles.footer}>
+      <footer>
         <Container>
           <Row>
             <Col>
