@@ -1,4 +1,4 @@
-// import styles from './header.module.scss'
+import styles from './header.module.scss';
 import { Container, Row, Col } from 'react-bootstrap';
 // import Toggle from '../Toggle';
 import Link from '../link';
@@ -44,7 +44,7 @@ const navLinks = links.map((link) => (
 
 const Header: React.FC<IHeader> = ({ setDarkMode }) => {
   return (
-    <header>
+    <header className={styles.header}>
       <Container>
         <Row>
           <Col>
