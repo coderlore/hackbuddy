@@ -4,7 +4,8 @@ import { render, screen } from '@testing-library/react';
 
 describe('Header', () => {
   test('Header in the document', () => {
-    render(<Header />);
+    const { debug } = render(<Header />);
+    debug();
     expect(screen.getByText(/Hackbuddy/i)).toBeInTheDocument();
   });
 });
