@@ -1,6 +1,6 @@
 import styles from './header.module.scss';
 import { Container, Row, Col } from 'react-bootstrap';
-// import Toggle from '../Toggle';
+import Toggle from '../Toggle';
 import Link from '../link';
 
 interface IHeader {
@@ -42,7 +42,7 @@ const navLinks = links.map((link) => (
   </li>
 ));
 
-const Header: React.FC<IHeader> = ({ setDarkMode }) => {
+const Header = ({ setDarkMode }: IHeader) => {
   return (
     <header className={styles.header}>
       <Container>
@@ -58,6 +58,7 @@ const Header: React.FC<IHeader> = ({ setDarkMode }) => {
           <Col className="text-right">
             <ul className="mt-4 mb-0">{navLinks}</ul>
             <p className="mt-1">Welcome, Vijay</p>
+            <Toggle setDarkMode={setDarkMode} />
           </Col>
         </Row>
       </Container>
