@@ -1,5 +1,5 @@
 import styles from './header.module.scss';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import Toggle from '../Toggle';
 import Link from '../link';
 
@@ -42,26 +42,30 @@ const navLinks = links.map((link) => (
   </li>
 ));
 
+const NextMeetup = () => (
+  <div className={`text-right ${styles.nextMeetup}`}>
+    <Row className={`pad15`}>
+      <Col>Next Meetup: Feb 24, 2022</Col>
+    </Row>
+  </div>
+);
+
 const Header = ({ setDarkMode }: IHeader) => {
   return (
-    <header className={styles.header}>
-      <Container>
-        <Row>
-          <Col>
-            <p className="mt-3 mb-0 logo">
-              <a href="/">HackBuddy</a>
-            </p>
-            <p className="mt-2 font-italic">
-              Become a Better Software Engineer
-            </p>
-          </Col>
-          <Col className="text-right">
-            <ul className="mt-4 mb-0">{navLinks}</ul>
-            <p className="mt-1">Welcome, Vijay</p>
-            <Toggle setDarkMode={setDarkMode} />
-          </Col>
-        </Row>
-      </Container>
+    <header className={`${styles.header}`}>
+      <Row className="pad15">
+        <Col>
+          <p className="mt-3 mb-0 logo">
+            <a href="/">HackBuddy</a>
+          </p>
+          <p className="mt-2">Become a Better Software Engineer</p>
+        </Col>
+        <Col className="text-right">
+          <ul className="mt-4 mb-0">{navLinks}</ul>
+          <p className="mt-1">Welcome, Vijay!</p>
+          <Toggle setDarkMode={setDarkMode} />
+        </Col>
+      </Row>
     </header>
   );
 };

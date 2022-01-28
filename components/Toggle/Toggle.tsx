@@ -1,6 +1,6 @@
 import styles from './Toggle.module.scss';
 import { useContext } from 'react';
-import { DarkContext } from '../../pages/index';
+import { DarkContext } from '../../context/DarkContext';
 
 interface IToggle {
   setDarkMode: (context: boolean) => void;

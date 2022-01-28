@@ -1,7 +1,6 @@
-import React, { useState } from "react";
-import Head from "next/head";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import React from 'react';
+import Head from 'next/head';
+import Page from '../components/Page';
 import {
   Container,
   Card,
@@ -10,77 +9,117 @@ import {
   Button,
   Alert,
   Carousel,
-} from "react-bootstrap";
+} from 'react-bootstrap';
 // link up to Wordpress next
 
 const categories = [
-  "Data Structures / Algorithms",
-  "Crypto & Bitcoin",
-  "Python / Data Science",
-  "React / Vue / Angular",
-  "JavaScript / Node.js",
-  "iOS / Swift",
+  'Data Structures / Algorithms',
+  'Crypto & Bitcoin',
+  'Python / Data Science',
+  'React / Vue / Angular',
+  'JavaScript / Node.js',
+  'iOS / Swift',
 ];
 
-const sponsors = ["1", "2", "3", "4"];
+//TODO- Add to CMS
+const contentSlider = [
+  {
+    imageSrc: 'image-block.svg',
+    id: 1,
+    title: 'First Slide Label',
+    content: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
+  },
+  {
+    imageSrc: 'image-block.svg',
+    id: 2,
+    title: 'Second Slide Label',
+    content: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
+  },
+  {
+    imageSrc: 'image-block.svg',
+    id: 3,
+    title: 'Third Slide Label',
+    content: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
+  },
+];
 
-export const DarkContext = React.createContext(false);
+//TODO - Fetch
+const meetups = [
+  {
+    id: 1,
+    title: 'Learn React with Vijay Menon',
+  },
+  {
+    id: 2,
+    title: 'Learn React with Vijay Menon',
+  },
+  {
+    id: 3,
+    title: 'Learn React with Vijay Menon',
+  },
+  {
+    id: 4,
+    title: 'Learn React with Vijay Menon',
+  },
+  {
+    id: 5,
+    title: 'Learn React with Vijay Menon',
+  },
+  {
+    id: 6,
+    title: 'Learn React with Vijay Menon',
+  },
+  {
+    id: 7,
+    title: 'Learn React with Vijay Menon',
+  },
+  {
+    id: 8,
+    title: 'Learn React with Vijay Menon',
+  },
+  {
+    id: 9,
+    title: 'Learn React with Vijay Menon',
+  },
+  {
+    id: 10,
+    title: 'Learn React with Vijay Menon',
+  },
+  {
+    id: 11,
+    title: 'Learn React with Vijay Menon',
+  },
+  {
+    id: 12,
+    title: 'Learn React with Vijay Menon',
+  },
+];
 
 export default function Home() {
-  const [darkMode, setDarkMode] = useState(false);
-
   return (
-    <div className={`main ${darkMode ? "dark" : "light"}`}>
+    <Page>
       <Head>
         <title>HackBuddy Future Site</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <DarkContext.Provider value={darkMode}>
-        <Header setDarkMode={setDarkMode} />
-      </DarkContext.Provider>
+
       <Row>
         <Col>
           <Carousel>
-            <Carousel.Item>
-              <img
-                className="d-block w-100"
-                src="image-block.svg"
-                alt="First slide"
-              />
-              <Carousel.Caption>
-                <h3>First slide label</h3>
-                <p>
-                  Nulla vitae elit libero, a pharetra augue mollis interdum.
-                </p>
-              </Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-              <img
-                className="d-block w-100"
-                src="image-block.svg"
-                alt="Third slide"
-              />
+            {contentSlider.map((item) => (
+              <Carousel.Item key={item.id}>
+                <img
+                  className="d-block w-100"
+                  src={item.imageSrc}
+                  alt="Third slide"
+                />
 
-              <Carousel.Caption>
-                <h3>Second slide label</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              </Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-              <img
-                className="d-block w-100"
-                src="image-block.svg"
-                alt="Third slide"
-              />
-
-              <Carousel.Caption>
-                <h3>Third slide label</h3>
-                <p>
-                  Praesent commodo cursus magna, vel scelerisque nisl
-                  consectetur.
-                </p>
-              </Carousel.Caption>
-            </Carousel.Item>
+                <Carousel.Caption>
+                  <h3>{item.title}</h3>
+                  <p>{item.content}</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+            ))}
           </Carousel>
         </Col>
       </Row>
@@ -93,45 +132,18 @@ export default function Home() {
             </Col>
           </Row>
           <Row>
-            <Col>
-              <Card style={{ width: "18rem" }}>
-                <Card.Img variant="top" src="image-block.svg" />
-                <Card.Body>
-                  <Card.Title>Card Title</Card.Title>
-                  <Card.Text>
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                  </Card.Text>
-                  <Button variant="primary">Go somewhere</Button>
-                </Card.Body>
-              </Card>
-            </Col>
-            <Col>
-              <Card style={{ width: "18rem" }}>
-                <Card.Img variant="top" src="image-block.svg" />
-                <Card.Body>
-                  <Card.Title>Card Title</Card.Title>
-                  <Card.Text>
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                  </Card.Text>
-                  <Button variant="primary">Go somewhere</Button>
-                </Card.Body>
-              </Card>
-            </Col>
-            <Col>
-              <Card style={{ width: "18rem" }}>
-                <Card.Img variant="top" src="image-block.svg" />
-                <Card.Body>
-                  <Card.Title>Card Title</Card.Title>
-                  <Card.Text>
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                  </Card.Text>
-                  <Button variant="primary">Go somewhere</Button>
-                </Card.Body>
-              </Card>
-            </Col>
+            {meetups.map((item) => (
+              <Col md="3" key={item.id} style={{ marginTop: `2rem` }}>
+                <Card>
+                  <Card.Img variant="top" src="image-block.svg" />
+                  <Card.Body>
+                    <Card.Title className="text-center">
+                      {item.title}
+                    </Card.Title>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
           </Row>
           <Row>
             <Col className="text-center">
@@ -139,36 +151,19 @@ export default function Home() {
               <Row>
                 {categories.map((category, id) => (
                   <Col key={id} md="4" className="mb-4">
-                    <Button>{category}</Button>
+                    <Button style={{ width: `320px`, height: `57px` }}>
+                      {category}
+                    </Button>
                   </Col>
                 ))}
               </Row>
             </Col>
           </Row>
-          <Row>
-            <Col>
-              <h2 className="text-center">Jobs & Announcements</h2>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <h2 className="text-center">Sponsors</h2>
-              {sponsors.map((sponsor, id) => (
-                <div key={id} className="sponsor"></div>
-              ))}
-              <div className="ad">This is an ad</div>
-              <div>
-                <span className="tag">This is a tag</span>
-                <span className="tag secondary">This is another tag</span>
-              </div>
-            </Col>
-          </Row>
         </Container>
-        <Alert variant={`primary`}>
+        <Alert variant={`warning`} style={{ marginTop: `2rem` }}>
           On Sale Now! Full Stack React Course Just $9.99 (Click Here)
         </Alert>
       </div>
-      <Footer />
-    </div>
+    </Page>
   );
 }

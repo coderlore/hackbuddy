@@ -1,9 +1,13 @@
 interface ILink {
-    target?:String;
-    link:String;
-    text: String;
+  target?: string;
+  link: string;
+  text: string;
 }
 
-const Link: React.FC<ILink> = ({link, target, text}) => <a href={`${link}`} target={`${target ?? ''}`}>{text}</a>
+const Link: React.FC<ILink> = ({ link, target, text }) => (
+  <a href={`${link}`} target={`${target ?? ''}`}>
+    {text}
+  </a>
+);
 
-export default Link
+export default Link;

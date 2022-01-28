@@ -1,9 +1,12 @@
+import styles from './Footer.module.scss';
 import { Container, Row, Col, Alert } from 'react-bootstrap';
 
 const Footer = () => {
+  const date = new Date();
+  const year = date.getFullYear();
   return (
     <>
-      <footer>
+      <footer className={styles.footer}>
         <Container>
           <Row>
             <Col>
@@ -46,7 +49,7 @@ const Footer = () => {
         </Container>
       </footer>
       <Alert className="pt-3" variant="dark">
-        Copyright 2021 (c) JavaScriptLA, LLC | HackBuddy is a trademark of
+        Copyright {year} (c) JavaScriptLA, LLC | HackBuddy is a trademark of
         JavaScriptLA, LLC
       </Alert>
     </>

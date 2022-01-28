@@ -1,20 +1,27 @@
 .header {
-    background-color: var(--theme-color);
-    color:  var(--theme-page-text);
-    width: 100%;
+  background-color: var(--theme-color);
+  color: var(--theme-page-text);
+  width: 100%;
 
-    ul {
-        li {
-            display: inline;
-            a { color: var(--theme-page-text); }
-            &:after {
-                content: " | ";
-            }
-            &:last-child {
-                &:after {
-                    content: "";
-                }
-            }
+  ul {
+    li {
+      display: inline;
+      a {
+        color: var(--theme-page-text);
+      }
+      &:after {
+        content: ' | ';
+      }
+      &:last-child {
+        &:after {
+          content: '';
         }
+      }
     }
+  }
+  .nextMeetup {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    background-color: var(--theme-body);
+  }
 }
