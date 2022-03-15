@@ -1,5 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
+import Image from 'next/image';
 import Page from '../components/Page';
 import {
   Container,
@@ -11,91 +12,15 @@ import {
   Carousel,
 } from 'react-bootstrap';
 // link up to Wordpress next
+import { getAllPostsForHome } from '../lib/api';
+import { removeDuplicateCategories } from '../lib/util';
 
-const categories = [
-  'Data Structures / Algorithms',
-  'Crypto & Bitcoin',
-  'Python / Data Science',
-  'React / Vue / Angular',
-  'JavaScript / Node.js',
-  'iOS / Swift',
-];
+export default function Home({ allPosts: { edges }, preview }) {
+  const carouselPosts = edges.slice(0, 5);
+  const morePosts = edges.slice(5);
+  const categoriesRaw = edges.map(({ node }) => node.categories);
+  const categories = removeDuplicateCategories(categoriesRaw);
 
-//TODO- Add to CMS
-const contentSlider = [
-  {
-    imageSrc: 'image-block.svg',
-    id: 1,
-    title: 'First Slide Label',
-    content: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
-  },
-  {
-    imageSrc: 'image-block.svg',
-    id: 2,
-    title: 'Second Slide Label',
-    content: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
-  },
-  {
-    imageSrc: 'image-block.svg',
-    id: 3,
-    title: 'Third Slide Label',
-    content: 'Nulla vitae elit libero, a pharetra augue mollis interdum.',
-  },
-];
-
-//TODO - Fetch
-const meetups = [
-  {
-    id: 1,
-    title: 'Learn React with Vijay Menon',
-  },
-  {
-    id: 2,
-    title: 'Learn React with Vijay Menon',
-  },
-  {
-    id: 3,
-    title: 'Learn React with Vijay Menon',
-  },
-  {
-    id: 4,
-    title: 'Learn React with Vijay Menon',
-  },
-  {
-    id: 5,
-    title: 'Learn React with Vijay Menon',
-  },
-  {
-    id: 6,
-    title: 'Learn React with Vijay Menon',
-  },
-  {
-    id: 7,
-    title: 'Learn React with Vijay Menon',
-  },
-  {
-    id: 8,
-    title: 'Learn React with Vijay Menon',
-  },
-  {
-    id: 9,
-    title: 'Learn React with Vijay Menon',
-  },
-  {
-    id: 10,
-    title: 'Learn React with Vijay Menon',
-  },
-  {
-    id: 11,
-    title: 'Learn React with Vijay Menon',
-  },
-  {
-    id: 12,
-    title: 'Learn React with Vijay Menon',
-  },
-];
-
-export default function Home() {
   return (
     <Page>
       <Head>
@@ -105,21 +30,20 @@ export default function Home() {
 
       <Row>
         <Col>
-          <Carousel>
-            {contentSlider.map((item) => (
-              <Carousel.Item key={item.id}>
-                <img
-                  className="d-block w-100"
-                  src={item.imageSrc}
-                  alt="Third slide"
-                />
-
-                <Carousel.Caption>
-                  <h3>{item.title}</h3>
-                  <p>{item.content}</p>
-                </Carousel.Caption>
-              </Carousel.Item>
-            ))}
+          <Carousel style={{ textAlign: `center`, backgroundColor: `#000` }}>
+            {/* could use filter */}
+            {carouselPosts.map(
+              ({ node }) =>
+                node.featuredImage && (
+                  <Carousel.Item key={node.slug}>
+                    <Image
+                      src={node.featuredImage?.node.sourceUrl}
+                      width="1400"
+                      height="640"
+                    />
+                  </Carousel.Item>
+                ),
+            )}
           </Carousel>
         </Col>
       </Row>
@@ -132,13 +56,18 @@ export default function Home() {
             </Col>
           </Row>
           <Row>
-            {meetups.map((item) => (
-              <Col md="3" key={item.id} style={{ marginTop: `2rem` }}>
+            {morePosts.map(({ node }) => (
+              <Col md="3" key={node.slug} style={{ marginTop: `2rem` }}>
                 <Card>
-                  <Card.Img variant="top" src="image-block.svg" />
+                  <Card.Img
+                    variant="top"
+                    src={
+                      node.featuredImage?.node.sourceUrl || 'image-block.svg'
+                    }
+                  />
                   <Card.Body>
                     <Card.Title className="text-center">
-                      {item.title}
+                      {node.title}
                     </Card.Title>
                   </Card.Body>
                 </Card>
@@ -149,13 +78,14 @@ export default function Home() {
             <Col className="text-center">
               <h2 className="text-center">Popular Categories & Trends</h2>
               <Row>
-                {categories.map((category, id) => (
-                  <Col key={id} md="4" className="mb-4">
-                    <Button style={{ width: `320px`, height: `57px` }}>
-                      {category}
-                    </Button>
-                  </Col>
-                ))}
+                {/* Todo filter array duplicates - use Set */}
+                {categories.map((category) => {
+                  return (
+                    <Col md="4" className="mb-4">
+                      <Button>{category}</Button>
+                    </Col>
+                  );
+                })}
               </Row>
             </Col>
           </Row>
@@ -166,4 +96,11 @@ export default function Home() {
       </div>
     </Page>
   );
+}
+
+export async function getStaticProps({ preview = false }) {
+  const allPosts = await getAllPostsForHome(preview);
+  return {
+    props: { allPosts, preview },
+  };
 }
