@@ -11,29 +11,28 @@ import Image from 'next/image';
 import Page from '../../components/Page';
 import { getAllPostsWithSlug, getPostAndMorePosts } from '../../lib/api';
 
-export default function Blogs({ post, posts, preview }) {
+export default function Blogs({ post }) {
   useEffect(() => {
     hljs.initHighlighting();
   }, []);
 
   const router = useRouter();
-  const morePosts = posts?.edges;
 
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />;
   }
   return (
     <Page>
-      <Head>
-        <title>{post.title}</title>
-      </Head>
+      <Head>{post?.title && <title>{post?.title}</title>}</Head>
       <section className="blog">
-        <h1 className={`mt-5 mb-5 text-center`}>{post.title}</h1>
+        {post?.title && (
+          <h1 className={`mt-5 mb-5 text-center`}>{post?.title}</h1>
+        )}
         <div>
-          {post.featuredImage && (
+          {post?.featuredImage && (
             <div className={`text-center`}>
               <Image
-                src={post.featuredImage.node.sourceUrl}
+                src={post.featuredImage?.node?.sourceUrl}
                 width={`1080`}
                 height={`480`}
               />
@@ -43,10 +42,12 @@ export default function Blogs({ post, posts, preview }) {
         <Container>
           <Row>
             <Col>
-              <div
-                className="mt-5 mb-5"
-                dangerouslySetInnerHTML={{ __html: post.content }}
-              />
+              {post?.content && (
+                <div
+                  className="mt-5 mb-5"
+                  dangerouslySetInnerHTML={{ __html: post?.content }}
+                />
+              )}
             </Col>
           </Row>
         </Container>
