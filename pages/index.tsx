@@ -62,8 +62,7 @@ export default function Home({ allPosts: { edges }, preview }) {
                 <Col
                   md="3"
                   key={node.slug}
-                  style={{ marginTop: `2rem` }}
-                  style={{ cursor: `pointer` }}
+                  style={{ marginTop: `2rem`, cursor: `pointer` }}
                 >
                   <Card>
                     <Card.Img
