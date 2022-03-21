@@ -1,0 +1,15 @@
+%spacing {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.blog {
+  p,
+  h2 {
+    @extend %spacing;
+  }
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}

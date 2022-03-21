@@ -1,6 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link';
 import Page from '../components/Page';
 import {
   Container,
@@ -57,21 +58,28 @@ export default function Home({ allPosts: { edges }, preview }) {
           </Row>
           <Row>
             {morePosts.map(({ node }) => (
-              <Col md="3" key={node.slug} style={{ marginTop: `2rem` }}>
-                <Card>
-                  <Card.Img
-                    variant="top"
-                    src={
-                      node.featuredImage?.node.sourceUrl || 'image-block.svg'
-                    }
-                  />
-                  <Card.Body>
-                    <Card.Title className="text-center">
-                      {node.title}
-                    </Card.Title>
-                  </Card.Body>
-                </Card>
-              </Col>
+              <Link href={`/blog/${node.slug}`}>
+                <Col
+                  md="3"
+                  key={node.slug}
+                  style={{ marginTop: `2rem` }}
+                  style={{ cursor: `pointer` }}
+                >
+                  <Card>
+                    <Card.Img
+                      variant="top"
+                      src={
+                        node.featuredImage?.node.sourceUrl || 'image-block.svg'
+                      }
+                    />
+                    <Card.Body>
+                      <Card.Title className="text-center">
+                        {node.title}
+                      </Card.Title>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              </Link>
             ))}
           </Row>
           <Row>
@@ -79,9 +87,9 @@ export default function Home({ allPosts: { edges }, preview }) {
               <h2 className="text-center">Popular Categories & Trends</h2>
               <Row>
                 {/* Todo filter array duplicates - use Set */}
-                {categories.map((category) => {
+                {categories.map((category, index) => {
                   return (
-                    <Col md="4" className="mb-4">
+                    <Col key={index} md="4" className="mb-4">
                       <Button>{category}</Button>
                     </Col>
                   );
