@@ -1,5 +1,11 @@
 .card {
   border-radius: 4px;
+  height: clamp(18rem, 18rem, 22rem);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  img {
+    aspect-ratio: 16/9;
+  }
 }
 
 .btn {
