@@ -72,7 +72,7 @@ export default function Home({ allPosts: { edges }, preview }) {
                       }
                     />
                     <Card.Body>
-                      <Card.Title className="text-center">
+                      <Card.Title className="text-center text-truncate">
                         {node.title}
                       </Card.Title>
                     </Card.Body>
