@@ -1,5 +1,12 @@
 .card {
   border-radius: 4px;
+  img {
+    aspect-ratio: 16/9;
+  }
+}
+
+.home {
+  max-width: 1450px;
 }
 
 .btn {
