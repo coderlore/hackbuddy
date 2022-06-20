@@ -1,8 +1,22 @@
 .card {
   border-radius: 4px;
+  min-height: 200px;
   img {
     aspect-ratio: 16/9;
   }
+}
+
+.card-body {
+  min-height: 125px;
+  max-height: 200px;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  white-space: normal;
 }
 
 .home {
